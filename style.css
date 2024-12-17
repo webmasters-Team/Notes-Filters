@@ -1,0 +1,146 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+
+#wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  color: #333333;
+  font-family: "Inter", sans-serif;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+.flexDiv {
+  display: flex;
+  position: absolute;
+  margin-top: 60px;
+  width: 90vw;
+  flex-wrap: wrap;
+  max-width: 800px;
+  left: 50%;
+  top: 0;
+  transform: translateX(-50%);
+}
+.pos-abs {
+  position: absolute;
+  top: -50px;
+  margin: 8px;
+  margin-top: 8px !important;
+}
+.pos-abs.personal {
+  left: 82px;
+}
+.pos-abs.read {
+  left: 192px;
+}
+.tag {
+  padding: 6px 12px;
+  width: fit-content;
+  border-radius: 9999px;
+  margin-top: 12px;
+  user-select: none;
+}
+.work,
+.note:has(.work) {
+  --tagColor: #fcdbcf;
+}
+.personal,
+.note:has(.personal) {
+  --tagColor: #ccdcff;
+}
+.read,
+.note:has(.read) {
+  --tagColor: #f9cafc;
+}
+.work,
+.personal,
+.read {
+  background-color: var(--tagColor);
+}
+#work-box:checked + label div,
+#personal-box:checked + label div,
+#read-box:checked + label div {
+  background-color: var(--tagColor);
+  color: unset;
+}
+#work-box + label div,
+#personal-box + label div,
+#read-box + label div {
+  background-color: white;
+  border: 1px solid var(--tagColor);
+  color: var(--tagColor);
+}
+
+.note {
+  background-color: #ffffff;
+  border: 1px solid #ebebeb;
+  box-sizing: border-box;
+  line-height: 1.5;
+  border-radius: 8px;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 1px 4px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 300ms ease-in-out 0s;
+}
+.note:hover {
+  border-color: var(--tagColor);
+}
+.note::selection {
+  background-color: var(--tagColor);
+}
+.tag::before {
+  content: "#";
+  margin-right: 2px;
+  opacity: 0.3;
+}
+#work-box ~ .note:has(.work),
+#personal-box ~ .note:has(.personal),
+#read-box ~ .note:has(.read) {
+  width: 0;
+  height: 0;
+  padding: 0;
+  margin: 0;
+  opacity: 0;
+  border-width: 0;
+}
+#work-box:checked ~ .note:has(.work),
+#personal-box:checked ~ .note:has(.personal),
+#read-box:checked ~ .note:has(.read) {
+  width: 31%;
+  height: 160px;
+  padding: 3%;
+  margin: 1%;
+  opacity: 1;
+  border-width: 1px;
+}
+input[type="checkbox"] {
+  display: none;
+}
+label {
+  cursor: pointer;
+}
+label:hover {
+  opacity: 0.8;
+}
+
+@media screen and (max-width: 400px) {
+  .flexDiv {
+    flex-direction: column;
+  }
+  #work-box:checked ~ .note:has(.work),
+  #personal-box:checked ~ .note:has(.personal),
+  #read-box:checked ~ .note:has(.read) {
+    width: 100%;
+    height: 160px;
+    padding: 3%;
+    margin-top: 24px;
+    opacity: 1;
+    border-width: 1px;
+  }
+  .note:last-of-type {
+    margin-bottom: 24px;
+  }
+}
